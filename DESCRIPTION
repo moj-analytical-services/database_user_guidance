@@ -1,0 +1,6 @@
+Package: Database user guidance
+Title: Database user guidance
+Type: Book
+Version: 0.0.1
+Imports: bookdown
+Remotes: rstudio/bookdown

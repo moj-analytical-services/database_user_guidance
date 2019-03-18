@@ -1,0 +1,17 @@
+--- 
+title: "Database user guidance"
+author: "MoJ Analytical Platform Team"
+description: "Guidance on using databases, including curated databases, on the MoJ Analytical Platform."
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+documentclass: book
+bibliography:
+biblio-style: apalike
+link-citations: yes
+---
+
+# Preface {-}
+
+This is the preface.
