@@ -1,8 +1,15 @@
 # SQL
 
-## Types of SQL
+__SQL__ (pronounced 'S-Q-L' or 'sequel') is a programming language used to access and manipulate databases. There are several versions of SQL that share a common framework but can have different syntax and functionality. The version of SQL used by [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html) is based on [Presto 0.172](https://prestodb.github.io/docs/0.172/index.html).
 
-## Ideas
+SQL is not case-sensitive.
+
+## Database structure
+
+1.  Database
+    +   Table
+
+## Stuff
 
 * Selecting
 * Merging
@@ -15,6 +22,99 @@
 * Subqueries
 
 ## Commands
+
+### What is a table and a view?
+
+### Data types
+
+### Functions
+
+### `SELECT`
+
+The `SELECT` statement is used to retrieve data from one or more tables or views in a database.
+
+The following code retrieves `column1, column2, ...` from a table called `table_name` in a database called `database_name`.
+
+```{sql}
+SELECT column1, column2, ...
+FROM database_name.table_name;
+```
+
+The following code retrieves all columns from a table called `table_name` in a database called `database_name`.
+
+```{sql}
+SELECT *
+FROM database_name.table_name;
+```
+
+### `AS`
+
+The `AS` operator is used give aliases, or temporary names, to tables and columns.
+
+Table aliases are used to:
+
+*   make code more concise and easy to follow when working with tables with long names; and
+*   differentiate between fields with the same name in two or more different tables.
+
+Column aliases are used to:
+
+*   give columns more readable names in the result set; and
+*   assign 
+
+If an alias contains spaces, it must be contained within double quotation marks or square brackets.
+
+Aliases are most useful when
+
+### `SELECT DISTINCT`
+
+The `SELECT DISTINCT` statement returns only one copy of each set of duplicate rows. It only looks at values in the selected columns when identifying duplicate rows.
+
+The following code retrieves all columns from a table called `table_name` in a database called `database_name` and returns only one copy of each set of duplicate rows.
+
+```{sql}
+SELECT DISTINCT *
+FROM database_name.table_name;
+```
+
+If there are no duplicate rows, `SELECT` is equivalent to `SELECT DISTINCT`.
+
+
+### `WHERE`
+
+The `WHERE` clause is 
+
+#### Operators
+
+Operator        | Description
+----------------|--------------------------
+`=`             | Equal to
+`<>`            | Not equal to
+`>`             | Greater than
+`<`             | Less than
+`>=`            | Greater than or equal to
+`<=`            | Less than or equal to
+`[NOT] IN`      | (Not) in a specified list
+`IS [NOT] NULL` | (Not) null
+`LIKE`          |
+`BETWEEN`       |
+`
+
+
+#### Wildcards
+
+### `LIMIT`
+
+The `LIMIT` clause restricts the number of rows in the result set. The rows in the result set will be arbitrary unless the query contains an `ORDER BY` clause.
+
+The following code retrieves all columns from a table called `table_name` in a database called `database_name` but restricts the output to 10 rows.
+
+```{sql}
+SELECT *
+FROM database_name.table_name
+LIMIT 10;
+```
+
+
 
 * `SELECT`
 * `DISTINCT`
