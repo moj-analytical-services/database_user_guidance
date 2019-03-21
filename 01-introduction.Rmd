@@ -1,3 +1,7 @@
 # Introduction
 
 This is guidance on using curated databases.
+
+## Get started
+
+How to get started with databases on the Analytical Platform.

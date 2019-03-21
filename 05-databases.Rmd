@@ -1,0 +1,31 @@
+# Databases
+
+There are currently five curated databases available on the Analytical Platform:
+
+1.  [CREST](#crest)
+2.  [HOCAS](#hocas)
+3.  [NOMIS](#nomis)
+4.  [TAR](#tar)
+5.  [XHIBIT](#xhibit)
+
+## Access permissions
+
+To access all curated databases on the Analytical Platform, you must have completed the baseline personnel security standard (BPSS).
+
+For each database, there are up to three different access levels:
+
+__Basic:__ Access to aggregated data only.
+
+__Standard:__ Access to individual--level data with all personal information removed, redacted or masked.
+
+__Full:__ Access to individual--level data, including all personal information.
+
+## CREST{#crest}
+
+## HOCAS{#hocas}
+
+## NOMIS{#nomis}
+
+## TAR{#tar}
+
+## XHIBIT{#xhibit}

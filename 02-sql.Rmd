@@ -1,0 +1,64 @@
+# SQL
+
+## Types of SQL
+
+## Ideas
+
+* Selecting
+* Merging
+* Filtering
+* Grouping
+* Ordering
+* Functions
+* Computing columns
+* Using strings
+* Subqueries
+
+## Commands
+
+* `SELECT`
+* `DISTINCT`
+* `LIMIT`
+* `FROM`
+* `AS`
+* `WHERE`
+* `HAVING`
+* `IF`
+* `GROUP BY`
+* `ORDER BY`
+* `ASC`
+* `DESC`
+* `WITH`
+* `AND`
+* `OR`
+* `NOT`
+* `IN`
+* `BETWEEN`
+* `INNER JOIN`
+* `LEFT JOIN`
+* `RIGHT JOIN`
+* `JOIN`
+* `ON`
+* `SUM`
+* `COUNT`
+* `AVG`
+* `MIN`
+* `MAX`
+* `UNION`
+* `UNION ALL`
+* `INTERSECT`
+* `EXCEPT`
+* `FORMAT`
+* `CREATE`
+* `TABLE`
+* `VIEW`
+* `IS`
+* `NULL`
+* `MISSING`
+* `||`
+* `CAST`
+* `CASE WHEN`
+* `LIKE`
+* `EXISTS`
+* `ANY`
+* `ALL`
