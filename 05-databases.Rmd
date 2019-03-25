@@ -10,15 +10,20 @@ There are currently five curated databases available on the Analytical Platform:
 
 ## Access permissions
 
-To access all curated databases on the Analytical Platform, you must have completed the baseline personnel security standard (BPSS).
+To access all curated databases on the Analytical Platform, you __must__ have completed the baseline personnel security standard (BPSS).
 
 For each database, there are up to three different access levels:
 
-__Basic:__ Access to aggregated data only.
 
-__Standard:__ Access to individual--level data with all personal information removed, redacted or masked.
+Access level    | Description
+----------------|-----------------
+Basic           | Access to aggregated data only
+Standard        | Access to individual--level data with all personal information removed, redacted or masked.
+Full            | Access to individual--level data, including all personal information
 
-__Full:__ Access to individual--level data, including all personal information.
+To request access to a curated database, you must submit a [data access request](https://forms.office.com/Pages/ResponsePage.aspx?id=KEeHxuZx_kGp4S6MNndq2BOEgSXQX71KliRRhdF6GWNUN0RVNDFaSjFPTVg1Q1pJWE8yUjFaSVdVSSQlQCN0PWcu).
+
+### Data access requests
 
 ## CREST{#crest}
 

@@ -1,9 +1,63 @@
 # Amazon Athena
 
-This is guidance on using Amazon Athena.
+>   Amazon Athena is an interactive query service that makes it easy to analyze data directly in Amazon Simple Storage Service (Amazon S3) using standard SQL. With a few actions in the AWS Management Console, you can point Athena at your data stored in Amazon S3 and begin using standard SQL to run ad-hoc queries and get results in seconds.
+>
+> Source: <cite><a href=https://docs.aws.amazon.com/athena/latest/ug/what-is.html>AWS</a></cite>
 
 ## Accessing Amazon Athena
 
+To access the AWS console, click [here](https://aws.services.alpha.mojanalytics.xyz). You may need to login with GitHub and go through two-factor authentication.
+
+To access Athena, click 'Services', then 'Athena'.
+
+![Navigate to Athena](images/access-athena-2.png)
+
+This will bring you to the Athena query editor. Here, you can:
+
+*   access and create databases, tables and views;
+*   write, run and save queries; and
+*   view and download query outputs to your local computer.
+
+![Athena query editor](images/access-athena-3.png)
+
+## Previewing tables and views
+
+In many cases, it may be useful to preview a table or view to get a better understanding of its structure and contents.
+
+To preview a table or view, select a database using the dropdown menu and find the object you want to preview either directly from the list or using the 'Filter table and views...' search bar.
+
+You can view the name and type of each column in a table or view by clicking the blue arrow to the left of the object name.
+
+To run a query to preview a table or view, click the three dots (⋮) to the right of the object name and click 'Preview table'. This will run the following query that selects all columns from the table or view and returns 10 rows from the output:
+
+```{}
+SELECT *
+FROM database_name.table_or_view_name
+LIMIT 10;
+```
+
+## Creating views
+
+## Creating tables
+
 ## Running queries
 
+To create and run a new query:
+
+1.  select the plus (+) tab above the editor window;
+2.  write your code in the editor window (or copy and paste from another editor); and 
+3.  click 'Run query'.
+
+Progress information, including the estimated time elapsed will be displayed in the results window while the query is being processed.
+
+Once the query has been completed, the output will be displayed in the results window.
+
+You can save a query (not including the resulting output) by clicking 'Save as' and entering a name and description. Saved queries are available from the 'Saved Queries' tab in the Athena toolbar.
+
+You can also create tables and views from queries by clicking 'Create' and entering a name. Tables and views that you create will be visible in the database window at the left of the page.
+
 ## Downloading query outputs
+
+When you have run a query, you can download the output to your local computer as a csv file.
+
+To download the output, click the page icon above the results table.

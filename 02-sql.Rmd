@@ -35,14 +35,14 @@ The `SELECT` statement is used to retrieve data from one or more tables or views
 
 The following code retrieves `column1, column2, ...` from a table called `table_name` in a database called `database_name`.
 
-```{sql}
+```{}
 SELECT column1, column2, ...
 FROM database_name.table_name;
 ```
 
 The following code retrieves all columns from a table called `table_name` in a database called `database_name`.
 
-```{sql}
+```{}
 SELECT *
 FROM database_name.table_name;
 ```
@@ -71,7 +71,7 @@ The `SELECT DISTINCT` statement returns only one copy of each set of duplicate r
 
 The following code retrieves all columns from a table called `table_name` in a database called `database_name` and returns only one copy of each set of duplicate rows.
 
-```{sql}
+```{}
 SELECT DISTINCT *
 FROM database_name.table_name;
 ```
@@ -108,7 +108,7 @@ The `LIMIT` clause restricts the number of rows in the result set. The rows in t
 
 The following code retrieves all columns from a table called `table_name` in a database called `database_name` but restricts the output to 10 rows.
 
-```{sql}
+```{}
 SELECT *
 FROM database_name.table_name
 LIMIT 10;
