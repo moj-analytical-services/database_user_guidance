@@ -1,0 +1,30 @@
+# (APPENDIX) Appendix {-}
+
+# Appendix
+
+## Installing packages{#installing-packages}
+
+### R
+
+To install a package in R from CRAN, use:
+
+```{r eval=FALSE}
+install.packages("<package_name>")
+```
+
+To install a package in R from GitHub, you first need to install and load `devtools` (or `remotes`):
+
+```{r eval=FALSE}
+install.packages("devtools")
+library(devtools)
+```
+
+Then, install the package using:
+
+```{}
+devtools::install_github("<repository_name>)
+```
+
+### Python
+
+Also `conda`.
