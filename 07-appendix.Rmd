@@ -1,8 +1,6 @@
 # (APPENDIX) Appendix {-}
 
-# Appendix
-
-## Installing packages{#installing-packages}
+# Installing packages{#installing-packages}
 
 ### R
 
@@ -22,9 +20,25 @@ library(devtools)
 Then, install the package using:
 
 ```{}
-devtools::install_github("<repository_name>)
+devtools::install_github("<repository_name>")
 ```
 
 ### Python
 
-Also `conda`.
+To install a Python package, run the following in  terminal:
+
+```{}
+pip install <package_name>
+```
+
+### Conda
+
+If you are using conda, you can install R, Python and operating system packages by running the following in a terminal:
+
+```{}
+conda install <package_name>
+```
+
+You can still install R packages using the methods described above.
+
+For further information, see the [conda package management](https://moj-analytical-services.github.io/platform_user_guidance/conda-package-management.html) section of the main Analytical Platform guidance.
