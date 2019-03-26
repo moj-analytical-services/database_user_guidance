@@ -8,6 +8,8 @@ There are currently five curated databases available on the Analytical Platform:
 4.  [TAR](#tar)
 5.  [XHIBIT](#xhibit)
 
+Information about these databases is given below.
+
 ## Access permissions
 
 To access all curated databases on the Analytical Platform, you __must__ have completed the baseline personnel security standard (BPSS).
@@ -21,11 +23,58 @@ Basic           | Access to aggregated data only
 Standard        | Access to individual--level data with all personal information removed, redacted or masked.
 Full            | Access to individual--level data, including all personal information
 
-To request access to a curated database, you must submit a [data access request](https://forms.office.com/Pages/ResponsePage.aspx?id=KEeHxuZx_kGp4S6MNndq2BOEgSXQX71KliRRhdF6GWNUN0RVNDFaSjFPTVg1Q1pJWE8yUjFaSVdVSSQlQCN0PWcu).
-
 ### Data access requests
 
+To request access to a curated database, you must submit a [data access request](https://forms.office.com/Pages/ResponsePage.aspx?id=KEeHxuZx_kGp4S6MNndq2BOEgSXQX71KliRRhdF6GWNUN0RVNDFaSjFPTVg1Q1pJWE8yUjFaSVdVSSQlQCN0PWcu).
+
+The form requires you to provide the following information. You may not need to complete all fields depending on your responses.
+
+Field                                   | Details
+----------------------------------------|----------------------------------------
+Name                                    |
+Email address                           |
+Approver name                           | The approver should be in your line management chain and should be at least a Band A.
+Approver email address                  |
+Which database do you require access to | CREST, HOCAS, NOMIS, TAR or XHIBIT.
+What level of access do you require?    | Basic, Standard or Full.
+Why do you require standard access?     | You should state why you require access to individual-level data.
+Why do you require full access?         | You should state why you require access to individual-level data and data that contains personal information.
+
+
 ## CREST{#crest}
+
+### Tables
+
+```{bash clone repos, include=FALSE}
+if [ -d "_temp_" ]; then
+  if [ -d "_temp_/crest" ]; then
+    cd _temp_/crest
+    git pull origin master
+  else
+    cd _temp_
+    git clone git@github.com:moj-analytical-services/crest_engineering_draft.git crest
+  fi
+else
+  mkdir _temp_
+  cd _temp_
+  git clone git@github.com:moj-analytical-services/crest_engineering_draft.git crest
+fi
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(jsonlite)
+library(data.table)
+library(knitr)
+table_name <- character()
+table_description <- character()
+for(file in list.files(path = '_temp_/crest/v1/meta_data/crest', full.names = TRUE)){
+parsed_json <- fromJSON(file)
+table_name <- append(table_name, parsed_json$name)
+table_description <- append(table_description, parsed_json$description)
+}
+dt <- data.table('Table name' = table_name, 'Description' = table_description)
+kable(dt)
+```
 
 ## HOCAS{#hocas}
 
