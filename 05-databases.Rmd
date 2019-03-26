@@ -45,7 +45,7 @@ Why do you require full access?         | You should state why you require acces
 
 ### Tables
 
-```{bash clone repos, include=FALSE}
+```{bash clone crest repo, include=FALSE}
 set -e
 
 [ -z "${GITHUB_TOKEN}" ] && exit 0
@@ -85,7 +85,87 @@ kable(dt)
 
 ## HOCAS{#hocas}
 
+### Tables
+
+```{bash clone crest repo, include=FALSE}
+set -e
+
+[ -z "${GITHUB_TOKEN}" ] && exit 0
+
+git config --global user.name calumabarnett
+git config --global user.email calum.barnett@digital.justice.gov.uk
+
+if [ -d "_temp_" ]; then
+  if [ -d "_temp_/hocas" ]; then
+    cd _temp_/hocas
+    git pull origin master
+  else
+    cd _temp_
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
+  fi
+else
+  mkdir _temp_
+  cd _temp_
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
+fi
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(jsonlite)
+library(data.table)
+library(knitr)
+table_name <- character()
+table_description <- character()
+for(file in list.files(path = '_temp_/HOCAS/meta_data/curated', full.names = TRUE)){
+parsed_json <- fromJSON(file)
+table_name <- append(table_name, parsed_json$name)
+table_description <- append(table_description, parsed_json$description)
+}
+dt <- data.table('Table name' = table_name, 'Description' = table_description)
+kable(dt)
+```
+
 ## NOMIS{#nomis}
+
+### Tables
+
+```{bash clone crest repo, include=FALSE}
+set -e
+
+[ -z "${GITHUB_TOKEN}" ] && exit 0
+
+git config --global user.name calumabarnett
+git config --global user.email calum.barnett@digital.justice.gov.uk
+
+if [ -d "_temp_" ]; then
+  if [ -d "_temp_/nomis" ]; then
+    cd _temp_/nomis
+    git pull origin master
+  else
+    cd _temp_
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git crest
+  fi
+else
+  mkdir _temp_
+  cd _temp_
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git crest
+fi
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(jsonlite)
+library(data.table)
+library(knitr)
+table_name <- character()
+table_description <- character()
+for(file in list.files(path = '_temp_/airflow_nomis_transform/meta_data/curated', full.names = TRUE)){
+parsed_json <- fromJSON(file)
+table_name <- append(table_name, parsed_json$name)
+table_description <- append(table_description, parsed_json$description)
+}
+dt <- data.table('Table name' = table_name, 'Description' = table_description)
+kable(dt)
+```
 
 ## TAR{#tar}
 
