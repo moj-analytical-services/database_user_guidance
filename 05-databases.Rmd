@@ -46,18 +46,25 @@ Why do you require full access?         | You should state why you require acces
 ### Tables
 
 ```{bash clone repos, include=FALSE}
+set -e
+
+[ -z "${GITHUB_TOKEN}" ] && exit 0
+
+git config --global user.name calumabarnett
+git config --global user.email calum.barnett@digital.justice.gov.uk
+
 if [ -d "_temp_" ]; then
   if [ -d "_temp_/crest" ]; then
     cd _temp_/crest
     git pull origin master
   else
     cd _temp_
-    git clone git@github.com:moj-analytical-services/crest_engineering_draft.git crest
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone git@github.com:moj-analytical-services/crest_engineering_draft.git crest
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
 fi
 ```
 
