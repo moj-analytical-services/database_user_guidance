@@ -27,6 +27,22 @@ SQL is not case-sensitive.
 
 ### Data types
 
+SQL supports several different data types. You can find out about those supported by Presto [here](https://prestodb.github.io/docs/0.172/language/types.html).
+
+The format and use of most of these data types will be familiar to users of other versions of SQL. The way dates, times and timestamps (datetimes) are specified can be slightly different.
+
+#### `DATE`
+
+Dates are written in the format `DATE 'YYYY-MM-DD'`.
+
+#### `TIME`
+
+Times are written in the format `TIME 'HH:MM:SS.SSS'`. You can also specify a timezone using `TIME HH:MM:SS.SSS <TIMEZONE>`. A list of timezones can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+
+#### `TIMESTAMP`
+
+Timestamps are the equivalent of datetimes in other versions of SQL. Timestamps are written in the format `TIMESTAMP 'YYYY-MM-DD HH:MM:SS.SSS`. As for times, you can specify a timezone in the same way.
+
 ### Functions
 
 ### `SELECT`
@@ -114,7 +130,73 @@ FROM database_name.table_name
 LIMIT 10;
 ```
 
+## Working with views
 
+### Creating and updating a view
+
+A view is the output of a stored query that can be accessed by a name in a similar way to a table. It may be useful to create a view if you often run the same query.
+
+When you select a view, the underlying query is rerun, so you will always see an output based on the most up-to-date data.
+
+To create a view, we use the `CREATE [OR REPLACE] VIEW AS` statement. For example, the following code creates a view called `view_1` that selects all columns from a table called `table_name` in a database called `database_name`:
+
+```{}
+CREATE OR REPLACE VIEW view_1 AS
+SELECT *
+FROM database_name.table_name;
+```
+
+Here, `OR REPLACE` updates the view if it already exists and creates it if not. If `OR REPLACE` is not included but the view already exists, the query will result in an error.
+
+### Deleting a view
+
+To delete a view, we use the `DROP VIEW` statement. For example, the following code deletes a view called `view_1` from a database called `database_1`:
+
+```{}
+DROP VIEW database_1.view_1;
+```
+
+Including `IF EXISTS` supresses an error if the view does not exist.
+
+## Working with tables
+
+### Creating a table from existing data
+
+To create a table in a database from existing data, we use the `CREATE TABLE [IF NOT EXISTS]` statement. The following code creates a new table called `table_1` that selects two columns from a table called `table_name` in a database called `database_name`:
+
+```{}
+CREATE TABLE IF NOT EXISTS table_1 AS
+SELECT column1, column2
+FROM database_name.table_name;
+```
+
+Including `IF NOT EXISTS` ensures that we only create a table when one does not already exist. If we did not include this but a table did already exist, the query would result in an error.
+
+This table will be stored permanently in the database and will not be updated, even if the underlying data used in the `CREATE TABLE` query changes.
+
+### Creating a new table
+
+To create a new table, we also use the `CREATE TABLE` statement. Here we must specify the names of the columns in the new table and their data types.
+
+### Inserting data into a table
+
+To insert data into a table we use the `INSERT INTO` statement. We can insert a single line at a time, multiple lines at a time or can insert data using a query on existing tables.
+
+### Modifying a table
+
+We can add, remove and modify columns in an existing table using the `ALTER TABLE` statement.
+
+### Deleting a table
+
+To delete a table, we use the `DROP TABLE [IF EXISTS]` statement. For example, the following code deletes a table called `table_1` from a database called `database_1`:
+
+```{}
+DROP TABLE IF EXISTS database_1.table_1;
+```
+
+Including `IF EXISTS` supresses an error if the table does not exist.
+
+__You should always check carefully before deleting a table and should never delete a table that you have not created yourself.__
 
 * `SELECT`
 * `DISTINCT`
