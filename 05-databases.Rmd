@@ -29,19 +29,20 @@ To request access to a curated database, you must submit a [data access request]
 
 The form requires you to provide the following information. You may not need to complete all fields depending on your responses.
 
-Field                                   | Details
-----------------------------------------|----------------------------------------
-Name                                    |
-Email address                           |
-Approver name                           | The approver should be in your line management chain and should be at least a Band A.
-Approver email address                  |
-Which database do you require access to | CREST, HOCAS, NOMIS, TAR or XHIBIT.
-What level of access do you require?    | Basic, Standard or Full.
-Why do you require standard access?     | You should state why you require access to individual-level data.
-Why do you require full access?         | You should state why you require access to individual-level data and data that contains personal information.
-
+Field                                    | Details
+-----------------------------------------|-----------------------------------------
+Name                                     |
+Email address                            |
+Approver name                            | The approver should be in your line management chain and should be at least a Band A.
+Approver email address                   |
+Which database do you require access to? | CREST, HOCAS, NOMIS, TAR or XHIBIT.
+What level of access do you require?     | Basic, Standard or Full.
+Why do you require standard access?      | You should state why you require access to individual-level data.
+Why do you require full access?          | You should state why you require access to individual-level data and data that contains personal information.
 
 ## CREST{#crest}
+
+For any queries, please contact [Karik Isichei](mailto:karik.isichei@digital.justice.gov.uk).
 
 ### Tables
 
@@ -85,6 +86,10 @@ kable(dt)
 
 ## HOCAS{#hocas}
 
+More comprehensive guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/HOCAS/blob/master/README.md).
+
+For any queries, please contact [Karola Graupner](mailto:karola.graupner@digital.justice.gov.uk).
+
 ### Tables
 
 ```{bash clone hocas repo, include=FALSE}
@@ -126,6 +131,8 @@ kable(dt)
 ```
 
 ## NOMIS{#nomis}
+
+For any queries, please contact [Adam Booker](mailto:adam.booker@digital.justice.gov.uk).
 
 ### Tables
 
