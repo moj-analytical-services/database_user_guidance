@@ -36,9 +36,89 @@ FROM database_name.table_or_view_name
 LIMIT 10;
 ```
 
-## Creating views
+## Working with views
 
-## Creating tables
+You can create, update and delete views using the code described in Section \@ref(), however, you can also take advantage of the Athena UI.
+
+### Creating a view
+
+Clicking 'Create view' in the database window generates an example query that you can edit to create a new view.
+
+![](images/athena-create-2.png)
+
+### Modifying and deleting a view
+
+To modify a view, click the three dots (⋮) to the right of the view name and click 'Show/edit query'.
+
+To delete a view, click the three dots (⋮) to the right of the view name and click 'Delete view'.
+
+![](images/athena-create-3.png)
+
+## Working with tables
+
+As for views, you can create, update and delete tables using the code described in Section \@ref(), however, you must also specify the storage format and location of the table in S3.
+
+You can also use the Athena UI. In particular, the Athena UI allows you to create tables directly from data stored in S3 or by using the AWS Glue Crawler. We will not cover use of the AWS Glue Crawler in this guidance.
+
+### Creating a table
+
+#### Using code
+
+If using code to create a table in Athena, you must also specify the storage format and location of the table in S3.
+
+If creating a table from existing data, you can specify this information using the `WITH` statement.
+
+```{}
+CREATE TABLE IF NOT EXISTS database_1.table_1
+    WITH (format = 'format', external_location = 'location') AS
+SELECT *
+FROM database_name.table_name;
+```
+
+Here, `format` can be any of the following:
+
+*   `ORC`
+*   `PARQUET`
+*   `AVRO`
+*   `JSON`
+*   `TEXTFILE`
+
+If `format` is not specified, `PARQUET` is used by default.
+
+Additionally, `location` is the S3 path where you would like to store the table, e.g., `s3://alpha-everyone`.
+
+There are several other parameters that you can specify. Information on these parameters can be found [here](https://docs.aws.amazon.com/athena/latest/ug/create-table-as.html).
+
+If you are creating a new table, you can specify the storage format using the `STORED AS` statement and the storage location using the `LOCATION` statement.
+
+```{}
+CREATE TABLE IF NOT EXISTS table_1 AS (
+    column_name1 column_type1,
+    column_name2 column_type2,
+    ...
+)
+STORED AS [format]
+LOCATION [location];
+```
+
+Here, `format` and `location` are the same as above.
+
+#### Using the Athena UI
+
+Clicking 'Create table' in the database window brings up a menu list with the following options:
+
+*   __Create table__
+    +   From S3 bucket data
+    +   from AWS Glue Crawler
+*   __SQL templates__
+    +   CREATE TABLE
+    +   CREATE TABLE AS SELECT
+
+Clicking 'CREATE TABLE' or 'CREATE TABLE AS SELECT' generates an example query that you can edit to create a new table.
+
+![](images/athena-create-1.png)
+
+### Deleting a table
 
 ## Running queries
 
