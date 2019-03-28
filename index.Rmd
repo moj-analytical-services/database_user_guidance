@@ -12,6 +12,20 @@ biblio-style: apalike
 link-citations: yes
 ---
 
-# Preface {-}
+# About this guidance {-}
 
-This is the preface.
+This guidance provides information on how to use the curated databases on the Analytical Platform.
+
+You may also find it useful to refer to the main [Analytical Platform guidance](https://moj-analytical-services.github.io/platform_user_guidance/).
+
+## Authors
+
+[Calum Barnett](mailto:calum.barnett@digital.justice.gov.uk) and [Karik Isichei](mailto:karik.isichei@digital.justice.gov.uk).
+
+## Feedback
+
+If you have any feedback on this guidance, please get in touch by [email](mailto:analytical_platform@digital.justice.gov.uk) or on [Slack](https://asdslack.slack.com).
+
+## Version log
+
+__v1.0.0:__ Initial release
