@@ -19,7 +19,7 @@ For each database, there are up to three different access levels:
 
 Access level    | Description
 ----------------|-----------------
-Basic           | Access to aggregated data only
+Basic           | Access to aggregated or derived tables only
 Standard        | Access to individual--level data with all personal information removed, redacted or masked.
 Full            | Access to individual--level data, including all personal information
 
@@ -51,17 +51,12 @@ CREST is the Crown Court database (soon to be superseeded by [XHIBIT](#XHIBIT)) 
 
 **Basic**:
 Access to the derived tables (`flatfile` and `all_offence_disp`) used for most analytical and stats purposes as well as the full `crest_lookups_v1` database.
-`
 
-Standard:
-Requires reason why you need to access the lower level database tables
-The above and,
-Access to the database (except for tables that hold personal identifiers such as names and addresses)
+**Standard:**
+Basic level access and access to the full database (`crest_v1`) (except for tables that hold personal identifiers such as names and addresses i.e. `crest_v1.subject`)
 
-Full:
-Requires reason why you need to access personal identifiers
-Level 1 and 2
-Access to the full database
+**Full:**
+Access to everything in i.e. `crest_v1.*`
 
 ### Tables
 
