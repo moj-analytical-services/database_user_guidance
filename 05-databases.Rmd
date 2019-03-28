@@ -87,7 +87,7 @@ kable(dt)
 
 ### Tables
 
-```{bash clone crest repo, include=FALSE}
+```{bash clone hocas repo, include=FALSE}
 set -e
 
 [ -z "${GITHUB_TOKEN}" ] && exit 0
@@ -129,7 +129,7 @@ kable(dt)
 
 ### Tables
 
-```{bash clone crest repo, include=FALSE}
+```{bash clone nomis repo, include=FALSE}
 set -e
 
 [ -z "${GITHUB_TOKEN}" ] && exit 0
