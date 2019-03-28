@@ -43,6 +43,26 @@ Why do you require full access?         | You should state why you require acces
 
 ## CREST{#crest}
 
+CREST is the Crown Court database (soon to be superseeded by [XHIBIT](#XHIBIT)) it holds data on cases going through or completed at the Crown Court. These are trial, sentence and appeal cases. We create and maintain a copy of the raw relational database system and also create calculated tables for analytical purposes. If you need access to this table you will need to submit a data access request with the level of access you want:
+
+**AP Database Names:**
+- `crest_v1`: The main database which holds the relational database and derived tables.
+- `crest_lookups_v1`: A table of database lookups maintained by ASD which have useful categories and measures.
+
+**Basic**:
+Access to the derived tables (`flatfile` and `all_offence_disp`) used for most analytical and stats purposes as well as the full `crest_lookups_v1` database.
+`
+
+Standard:
+Requires reason why you need to access the lower level database tables
+The above and,
+Access to the database (except for tables that hold personal identifiers such as names and addresses)
+
+Full:
+Requires reason why you need to access personal identifiers
+Level 1 and 2
+Access to the full database
+
 ### Tables
 
 ```{bash clone crest repo, include=FALSE}
