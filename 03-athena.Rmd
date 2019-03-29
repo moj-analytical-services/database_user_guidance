@@ -10,7 +10,7 @@ To access the AWS console, click [here](https://aws.services.alpha.mojanalytics.
 
 To access Athena, click 'Services', then 'Athena'.
 
-![Navigate to Athena](images/access-athena-2.png)
+![](images/access-athena-2.png)
 
 This will bring you to the Athena query editor. Here, you can:
 
@@ -18,7 +18,7 @@ This will bring you to the Athena query editor. Here, you can:
 *   write, run and save queries; and
 *   view and download query outputs to your local computer.
 
-![Athena query editor](images/access-athena-3.png)
+![](images/access-athena-3.png)
 
 ## Previewing tables and views
 
