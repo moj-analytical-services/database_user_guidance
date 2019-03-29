@@ -97,8 +97,8 @@ CREATE TABLE IF NOT EXISTS table_1 AS (
     column_name2 column_type2,
     ...
 )
-STORED AS [format]
-LOCATION [location];
+STORED AS 'format'
+LOCATION 'location';
 ```
 
 Here, `format` and `location` are the same as above.
@@ -114,11 +114,20 @@ Clicking 'Create table' in the database window brings up a menu list with the fo
     +   CREATE TABLE
     +   CREATE TABLE AS SELECT
 
-Clicking 'CREATE TABLE' or 'CREATE TABLE AS SELECT' generates an example query that you can edit to create a new table.
-
 ![](images/athena-create-1.png)
 
+Clicking 'CREATE TABLE' or 'CREATE TABLE AS SELECT' generates an example query that you can edit to create a new table. These example queries are of the same form as those described in the previous section.
+
+Clicking 'from S3 bucket data' will open a new window that guides you through four steps to create a new table from data in S3:
+
+*   __Step 1:__ Select which database to store your table in, input a name for your table and input the S3 path to the data from which you want to make the table. The S3 path should be of the form `s3://bucket/folder/`.
+*   __Step 2:__ Select the format of the input data. You may also have to complete additional fields depending on the format of the input data.
+*   __Step 3:__ Input the name and data type of each column in the table. When adding a large number of columns, it may be easier to use the 'Bulk add columns' option.
+*   __Step 4:__ Select whether you want to partition the data in the table. This step is optional.
+
 ### Deleting a table
+
+To delete a table using the Athena UI, click the three dots (⋮) next to the name of the table you want to delete and click 'Delete table'.
 
 ## Running queries
 
@@ -141,3 +150,5 @@ You can also create tables and views from queries by clicking 'Create' and enter
 When you have run a query, you can download the output to your local computer as a csv file.
 
 To download the output, click the page icon above the results table.
+
+![](images/athena-create-4.png)
