@@ -86,7 +86,9 @@ kable(dt)
 
 ## HOCAS{#hocas}
 
-More comprehensive guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/HOCAS/blob/master/README.md).
+This section of the guidance is currently under development.
+
+Existing guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/HOCAS/blob/master/README.md).
 
 For any queries, please contact [Karola Graupner](mailto:karola.graupner@digital.justice.gov.uk).
 
@@ -106,12 +108,12 @@ if [ -d "_temp_" ]; then
     git pull origin master
   else
     cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git hocas
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git hocas
 fi
 ```
 
@@ -121,7 +123,7 @@ library(data.table)
 library(knitr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/HOCAS/meta_data/curated', full.names = TRUE)){
+for(file in list.files(path = '_temp_/hocas/meta_data/curated', full.names = TRUE)){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -131,6 +133,8 @@ kable(dt)
 ```
 
 ## NOMIS{#nomis}
+
+This section of the guidance is currently under development.
 
 For any queries, please contact [Adam Booker](mailto:adam.booker@digital.justice.gov.uk).
 
@@ -150,12 +154,12 @@ if [ -d "_temp_" ]; then
     git pull origin master
   else
     cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git crest
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git nomis
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git crest
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git nomis
 fi
 ```
 
@@ -165,7 +169,7 @@ library(data.table)
 library(knitr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/airflow_nomis_transform/meta_data/curated', full.names = TRUE)){
+for(file in list.files(path = '_temp_/nomis/meta_data/curated', full.names = TRUE)){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -176,4 +180,8 @@ kable(dt)
 
 ## TAR{#tar}
 
+This section of the guidance is currently under development.
+
 ## XHIBIT{#xhibit}
+
+This section of the guidance is currently under development.
