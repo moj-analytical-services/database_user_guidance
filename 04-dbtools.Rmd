@@ -22,7 +22,7 @@ You should also ensure that the following dependencies are installed and loaded:
 *   `reticulate` (R)
 *   `s3tools` (R, preinstalled)
 
-For more information on installing packages, see Section \@ref(installing-packages).
+For more information on installing packages, see Appendix \@ref(installing-packages).
 
 To install and the latest version of `dbtools`, run the following code:
 
@@ -42,19 +42,29 @@ library(dbtools)
 
 `read_sql` submits a query to Amazon Athena and returns the output of the query as a tibble, dataframe or data.table. A tibble is returned by default, however, you can select another option using the `return_df_as` argument.
 
-
-
-You can read more about the function by running the following in R:
+You can read more about the function by running the following code in R:
 
 ```{}
 help?dbtools::read_sql
 ```
 
-
-
 #### `get_athena_query_response`
 
+`get_athena_query_response` submits a query to Athena but does not directly return the output. Instead, it returns a list that contains the S3 path of the output and query metadata.
+
+You can then read the output into RStudio using `s3tools` and the read method of your choice. When using `s3tools` you should remove `s3://` from the S3 path.
+
+You can read more about the function by running the following code in R:
+
+```{}
+help?dbtools::get_athena_query_response
+```
+
 ### Examples
+
+The [readme](https://github.com/moj-analytical-services/dbtools/blob/master/README.md) in the `dbtools` repository on GitHub provides several examples of how to use each function.
+
+The readme also contains information on the conversion of metadata, including data types, when reading from Athena into a tibble, dataframe or data.table.
 
 ## Python
 
@@ -68,8 +78,27 @@ Before installing `pydbtools`, ensure that the following dependencies are instal
 *   `pandas` (Python, preinstalled)
 *   `s3fs` (Python)
 
-For more information on installing packages, see Section \@ref(installing-packages).
+For more information on installing packages, see Appendix \@ref(installing-packages).
 
 ### Functions
 
+`pydbtools` contains two functions:
+
+*   `read_sql`
+*   `get_athena_query_response`
+
+#### `read_sql`
+
+`read_sql` submits a query to Amazon Athena and returns the output of the query as a pandas dataframe.
+
+#### `get_athena_query_response`
+
+`get_athena_query_response` submits a query to Athena but does not directly return the output. Instead, it returns a dictionary that contains the S3 path of the output and query metadata.
+
+You can then read the output directly into Python using `pd.read_csv`. When using `pd.read_csv` you should replace `s3://` with `s3a://` in the S3 path.
+
 ### Examples
+
+The [readme](https://github.com/moj-analytical-services/pydbtools/blob/master/README.md) in the `pydbtools` repository on GitHub provides several examples of how to use each function.
+
+The readme also contains information on the conversion of metadata, including data types, when reading from Athena into a pandas dataframe.
