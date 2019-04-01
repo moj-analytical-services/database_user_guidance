@@ -42,6 +42,7 @@ Why do you require full access?          | You should state why you require acce
 CREST is the Crown Court database (soon to be superseeded by [XHIBIT](#xhibit)). It holds data on pending and completed Crown Court cases. These are trial, sentence and appeal cases. We create and maintain a copy of the raw relational database system and also create calculated tables for analytical purposes.
 
 CREST consists of two databases:
+
 *   `crest_v1`: The main database that holds the relational database and derived tables.
 *   `crest_lookups_v1`: A database containing a table of lookups maintained by DASD that has useful categories and measures.
 
@@ -84,9 +85,12 @@ fi
 library(jsonlite)
 library(data.table)
 library(knitr)
+library(stringr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/crest/v1/meta_data/crest', full.names = TRUE)){
+files <- list.files(path = '_temp_/crest/v1/meta_data/crest', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -99,7 +103,7 @@ kable(dt)
 
 This section of the guidance is currently under development.
 
-Existing guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/HOCAS/blob/master/README.md).
+Existing guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/airflow-hocas-to-athena/blob/master/README.md).
 
 For any queries, please contact [Karola Graupner](mailto:karola.graupner@digital.justice.gov.uk).
 
@@ -119,12 +123,12 @@ if [ -d "_temp_" ]; then
     git pull origin master
   else
     cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git hocas
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-hocas-to-athena.git hocas
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git hocas
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-hocas-to-athena.git hocas
 fi
 ```
 
@@ -132,9 +136,12 @@ fi
 library(jsonlite)
 library(data.table)
 library(knitr)
+library(stringr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/hocas/meta_data/curated', full.names = TRUE)){
+files <- list.files(path = '_temp_/hocas/meta_data/curated', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -165,12 +172,12 @@ if [ -d "_temp_" ]; then
     git pull origin master
   else
     cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git nomis
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git nomis
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
 fi
 ```
 
@@ -178,9 +185,12 @@ fi
 library(jsonlite)
 library(data.table)
 library(knitr)
+library(stringr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/nomis/meta_data/curated', full.names = TRUE)){
+files <- list.files(path = '_temp_/nomis/meta_data/curated', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -196,3 +206,46 @@ This section of the guidance is currently under development.
 ## XHIBIT{#xhibit}
 
 This section of the guidance is currently under development.
+
+### Tables
+
+```{bash clone xhibit repo, include=FALSE}
+set -e
+
+[ -z "${GITHUB_TOKEN}" ] && exit 0
+
+git config --global user.name calumabarnett
+git config --global user.email calum.barnett@digital.justice.gov.uk
+
+if [ -d "_temp_" ]; then
+  if [ -d "_temp_/xhibit" ]; then
+    cd _temp_/xhibit
+    git pull origin master
+  else
+    cd _temp_
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-xhibit-ap.git xhibit
+  fi
+else
+  mkdir _temp_
+  cd _temp_
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-xhibit-ap.git xhibit
+fi
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(jsonlite)
+library(data.table)
+library(knitr)
+library(stringr)
+table_name <- character()
+table_description <- character()
+files <- list.files(path = '_temp_/hocas/meta_data/curated', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
+parsed_json <- fromJSON(file)
+table_name <- append(table_name, parsed_json$name)
+table_description <- append(table_description, parsed_json$description)
+}
+dt <- data.table('Table name' = table_name, 'Description' = table_description)
+kable(dt)
+```
