@@ -207,7 +207,7 @@ This section of the guidance is currently under development.
 
 This section of the guidance is currently under development.
 
-### Tables
+<!-- ### Tables
 
 ```{bash clone xhibit repo, include=FALSE}
 set -e
@@ -248,4 +248,4 @@ table_description <- append(table_description, parsed_json$description)
 }
 dt <- data.table('Table name' = table_name, 'Description' = table_description)
 kable(dt)
-```
+``` -->
