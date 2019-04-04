@@ -32,6 +32,18 @@ Timestamps are the equivalent of datetimes in other versions of SQL. Timestamps 
 
 ## Commands
 
+<!-- All SQL queries follow a standard format. A basic version of this format is outlined below.
+
+```{}
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
+``` -->
+
 ### `SELECT`
 
 The `SELECT` statement is used to retrieve data from one or more tables or views in a database.
@@ -111,6 +123,30 @@ FROM database_name.table_name
 LIMIT 10;
 ```
 
+### `ORDER BY`
+
+The `ORDER BY` statement is used to sort the outputs of a query. You can sort using multiple columns by separating the names of the columns with a comma. For example, `ORDER BY column1, column2, column3` would sort a query output first by `column1`, then by `column2` and finally by `column3`.
+
+By default, `ORDER BY` sorts in ascending order. To sort in descending order, insert the keyword `DESC` after the column name. You can also explicitly sort in ascending order by inserting the keyword `ASC` after the column name. For example, `ORDER BY column1 ASC, column2 DESC` would sort a query output first by `column1` in ascending order and then by `column2` in descending order.
+
+```{}
+SELECT column1,
+       column2,
+       column3
+FROM database_name.table_name
+ORDER BY column1 ASC, column2 DESC;
+```
+
+<!-- ### `GROUP BY`
+
+The `GROUP BY` statement is used to group the results of a query output and is often used with summary functions:
+
+*   `MAX`
+*   `MIN`
+*   `SUM`
+*   `COUNT`
+*   `AVG` -->
+
 ### `JOIN`
 
 There are five different types of join:
@@ -123,7 +159,14 @@ There are five different types of join:
 
 All of these join statements, apart from `CROSS JOIN` require you to specify the column(s) on which to join using the `ON` statement.
 
+As an example, the following code selects all columns from `table_1` (which has the alias `t1`) and joins them to all columns from `table_2` (which has the alias `t2`) where `column1` in `table_1` matches `column1` in `table_2`:
 
+```{}
+SELECT t1.*,
+       t2.*
+FROM database_name.table_1 t1
+INNER JOIN database_name.table_2 t2 ON t1.column1 = t2.column1;
+```
 
 ### `CREATE VIEW`
 
