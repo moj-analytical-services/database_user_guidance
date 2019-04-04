@@ -196,6 +196,8 @@ Including `IF EXISTS` supresses an error if the view does not exist.
 
 ### `CREATE TABLE`
 
+To create, edit or delete tables in Athena you need to have additional read/write permissions. If you require access to this functionality, please contact the Analytical Platform team.
+
 #### Creating a table from existing data
 
 To create a table in a database from existing data, we use the `CREATE TABLE [IF NOT EXISTS]` statement. The following code creates a new table called `table_1` that selects two columns from a table called `table_name` in a database called `database_name`:
@@ -234,6 +236,6 @@ Including `IF EXISTS` supresses an error if the table does not exist.
 
 __You should always check carefully before deleting a table and should never delete a table that you have not created yourself.__
 
-## Functions
+<!-- ## Functions
 
-SQL supports hundreds of functions, a full list of which can be found in the [Presto documentation](https://prestodb.github.io/docs/current/functions.html).
+SQL supports hundreds of functions, a full list of which can be found in the [Presto documentation](https://prestodb.github.io/docs/current/functions.html). -->
