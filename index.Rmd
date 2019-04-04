@@ -12,6 +12,35 @@ biblio-style: apalike
 link-citations: yes
 ---
 
-# Preface {-}
+# About this guidance {-}
 
-This is the preface.
+This guidance provides information on how to use the curated databases on the Analytical Platform.
+
+You may also find it useful to refer to the main [Analytical Platform guidance](https://moj-analytical-services.github.io/platform_user_guidance/).
+
+## Feedback
+
+If you have any feedback on this guidance, please get in touch by [email](mailto:analytical_platform@digital.justice.gov.uk) or on [Slack](https://asdslack.slack.com).
+
+## Version log
+
+```{r get github releases, echo = FALSE}
+library(httr)
+library(jsonlite)
+library(data.table)
+library(knitr)
+
+url <- 'https://api.github.com'
+path <- 'repos/moj-analytical-services/database_user_guidance/releases'
+
+raw.result <- httr::GET(url = url, path = path, add_headers(.headers = c(token = Sys.getenv('OAUTH_TOKEN'))))
+
+raw.content <- rawToChar(raw.result$content)
+
+content <- fromJSON(raw.content)
+
+output <- as.data.table(content[c('tag_name', 'name', 'body')])
+colnames(output) <- c('Tag version', 'Release title', 'Description')
+
+knitr::kable(output)
+```
