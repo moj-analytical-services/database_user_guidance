@@ -15,6 +15,7 @@ jobs:
             R -e "install.packages(c('remotes', 'data.table', 'jsonlite', 'knitr'), dependencies = TRUE)"
             R -e "remotes::install_github('rstudio/bookdown')"
 
+      - run:
           name: Clone database repositories
           command: |
             set -e
