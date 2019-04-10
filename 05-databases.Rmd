@@ -16,16 +16,13 @@ To access all curated databases on the Analytical Platform, you __must__ have co
 
 For each database, there are up to three different access levels:
 
+*   __Basic:__ Access to aggregated and derived data only
+*   __Standard:__ Access to individual--level data with all personal information removed, redacted or masked.
+*   __Full:__ Access to individual--level data, including all personal information
 
-Access level    | Description
-----------------|-----------------
-Basic           | Access to aggregated data only
-Standard        | Access to individual--level data with all personal information removed, redacted or masked.
-Full            | Access to individual--level data, including all personal information
+### Data access requests{#data-access-requests}
 
-### Data access requests
-
-To request access to a curated database, you must submit a [data access request](https://forms.office.com/Pages/ResponsePage.aspx?id=KEeHxuZx_kGp4S6MNndq2BOEgSXQX71KliRRhdF6GWNUN0RVNDFaSjFPTVg1Q1pJWE8yUjFaSVdVSSQlQCN0PWcu).
+To request access to a curated database, you must submit a [data access request](https://forms.office.com/Pages/ResponsePage.aspx?id=KEeHxuZx_kGp4S6MNndq2I8ebMaq5PFBoMAkkhrMYHBUODRaN1ZWVlhRUVMxQ0VIRVQ1MlRLRkM4NS4u).
 
 The form requires you to provide the following information. You may not need to complete all fields depending on your responses.
 
@@ -41,6 +38,21 @@ Why do you require standard access?      | You should state why you require acce
 Why do you require full access?          | You should state why you require access to individual-level data and data that contains personal information.
 
 ## CREST{#crest}
+
+CREST is the Crown Court database (soon to be superseeded by [XHIBIT](#xhibit)). It holds data on pending and completed Crown Court cases. These are trial, sentence and appeal cases. We create and maintain a copy of the raw relational database system and also create calculated tables for analytical purposes.
+
+CREST consists of two databases:
+
+*   `crest_v1`: The main database that holds the relational database and derived tables.
+*   `crest_lookups_v1`: A database containing a table of lookups maintained by DASD that has useful categories and measures.
+
+If you need access to this table you will need to submit a [data access request](#data-access-requests). When submitting a request, you will need select the level of access you require:
+
+*   __Basic:__ Access to the derived tables (`flatfile` and `all_offence_disp`) that are used for most analytical and statistical purposes as well as the full `crest_lookups_v1` database.
+
+*   __Standard:__ Basic level access plus access to the full database (`crest_v1`), except for tables that contain personal information, such as names and addresses, e.g., `crest_v1.subject`.
+
+*   __Full:__ Access to both databases and all tables, including tables that contain personal information.
 
 For any queries, please contact [Karik Isichei](mailto:karik.isichei@digital.justice.gov.uk).
 
@@ -73,9 +85,12 @@ fi
 library(jsonlite)
 library(data.table)
 library(knitr)
+library(stringr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/crest/v1/meta_data/crest', full.names = TRUE)){
+files <- list.files(path = '_temp_/crest/v1/meta_data/crest', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -86,7 +101,9 @@ kable(dt)
 
 ## HOCAS{#hocas}
 
-More comprehensive guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/HOCAS/blob/master/README.md).
+This section of the guidance is currently under development.
+
+Existing guidance on the HOCAS database is avaiable [here](https://github.com/moj-analytical-services/airflow-hocas-to-athena/blob/master/README.md).
 
 For any queries, please contact [Karola Graupner](mailto:karola.graupner@digital.justice.gov.uk).
 
@@ -106,12 +123,12 @@ if [ -d "_temp_" ]; then
     git pull origin master
   else
     cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-hocas-to-athena.git hocas
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-hocas-to-athena.git hocas
 fi
 ```
 
@@ -119,9 +136,12 @@ fi
 library(jsonlite)
 library(data.table)
 library(knitr)
+library(stringr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/HOCAS/meta_data/curated', full.names = TRUE)){
+files <- list.files(path = '_temp_/hocas/meta_data/curated', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -131,6 +151,8 @@ kable(dt)
 ```
 
 ## NOMIS{#nomis}
+
+This section of the guidance is currently under development.
 
 For any queries, please contact [Adam Booker](mailto:adam.booker@digital.justice.gov.uk).
 
@@ -150,12 +172,12 @@ if [ -d "_temp_" ]; then
     git pull origin master
   else
     cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git crest
+    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
   fi
 else
   mkdir _temp_
   cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git crest
+  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
 fi
 ```
 
@@ -163,9 +185,12 @@ fi
 library(jsonlite)
 library(data.table)
 library(knitr)
+library(stringr)
 table_name <- character()
 table_description <- character()
-for(file in list.files(path = '_temp_/airflow_nomis_transform/meta_data/curated', full.names = TRUE)){
+files <- list.files(path = '_temp_/nomis/meta_data/curated', full.names = TRUE)
+files <- files[!stringr::str_detect(files, 'database.json')]
+for(file in files){
 parsed_json <- fromJSON(file)
 table_name <- append(table_name, parsed_json$name)
 table_description <- append(table_description, parsed_json$description)
@@ -176,4 +201,8 @@ kable(dt)
 
 ## TAR{#tar}
 
+This section of the guidance is currently under development.
+
 ## XHIBIT{#xhibit}
+
+This section of the guidance is currently under development.

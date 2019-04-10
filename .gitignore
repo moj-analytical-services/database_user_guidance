@@ -38,3 +38,6 @@ rsconnect/
 
 # Bookdown files
 _book
+
+# Environment variables
+set_env_vars.R
