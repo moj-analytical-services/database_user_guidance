@@ -42,14 +42,14 @@ jobs:
                 git pull origin master
               else
                 cd _temp_
-                git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git nomis
+                git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
               fi
             else
               mkdir _temp_
               cd _temp_
               git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
               git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git hocas
-              git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow_nomis_transform.git nomis
+              git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
             fi
             
       - run:
