@@ -16,43 +16,6 @@ jobs:
             R -e "remotes::install_github('rstudio/bookdown')"
 
       - run:
-          name: Clone database repositories
-          command: |
-            set -e
-            [ -z "${GITHUB_TOKEN}" ] && exit 0
-            git config --global user.name calumabarnett
-            git config --global user.email calum.barnett@digital.justice.gov.uk
-            if [ -d "_temp_" ]; then
-              if [ -d "_temp_/crest" ]; then
-                cd _temp_/crest
-                git pull origin master
-              else
-                cd _temp_
-                git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
-              fi
-              if [ -d "_temp_/hocas" ]; then
-                cd _temp_/hocas
-                git pull origin master
-              else
-                cd _temp_
-                git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git crest
-              fi
-              if [ -d "_temp_/nomis" ]; then
-                cd _temp_/nomis
-                git pull origin master
-              else
-                cd _temp_
-                git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
-              fi
-            else
-              mkdir _temp_
-              cd _temp_
-              git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
-              git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/HOCAS.git hocas
-              git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
-            fi
-            
-      - run:
           name: Build the book
           command: |
             R -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
