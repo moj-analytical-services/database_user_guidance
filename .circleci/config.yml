@@ -10,11 +10,8 @@ jobs:
       - run:
           name: Install package dependencies
           command: |
-            R -e "install.packages('devtools', dependencies = TRUE)"
-            R -e "install.packages('data.table', dependencies = TRUE)"
-            R -e "install.packages('jsonlite', dependencies = TRUE)"
-            R -e "install.packages('knitr', dependencies = TRUE)"
-            R -e "devtools::install_github('rstudio/bookdown')"
+            R -e "install.packages(c('remotes', 'data.table', 'jsonlite', 'knitr'), dependencies = TRUE)"
+            R -e "remotes::install_github('rstudio/bookdown')"
             
       - run:
           name: Build the book
