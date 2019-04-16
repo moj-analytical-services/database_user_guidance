@@ -1,4 +1,4 @@
-# Metadata search tool
+# Metadata search tool{#metadata-search-tool}
 
 ## Overview
 

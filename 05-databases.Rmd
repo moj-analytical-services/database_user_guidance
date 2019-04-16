@@ -37,6 +37,10 @@ What level of access do you require?     | Basic, Standard or Full.
 Why do you require standard access?      | You should state why you require access to individual-level data.
 Why do you require full access?          | You should state why you require access to individual-level data and data that contains personal information.
 
+## Metadata
+
+To find out about the metadata of the curated databases, you can use the [metadata search tool](#metadata-search-tool).
+
 ## CREST{#crest}
 
 CREST is the Crown Court database (soon to be superseeded by [XHIBIT](#xhibit)). It holds data on pending and completed Crown Court cases. These are trial, sentence and appeal cases. We create and maintain a copy of the raw relational database system and also create calculated tables for analytical purposes.
@@ -56,49 +60,6 @@ If you need access to this table you will need to submit a [data access request]
 
 For any queries, please contact [Karik Isichei](mailto:karik.isichei@digital.justice.gov.uk).
 
-### Tables
-
-```{bash clone crest repo, include=FALSE}
-set -e
-
-[ -z "${GITHUB_TOKEN}" ] && exit 0
-
-git config --global user.name calumabarnett
-git config --global user.email calum.barnett@digital.justice.gov.uk
-
-if [ -d "_temp_" ]; then
-  if [ -d "_temp_/crest" ]; then
-    cd _temp_/crest
-    git pull origin master
-  else
-    cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
-  fi
-else
-  mkdir _temp_
-  cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/crest_engineering_draft.git crest
-fi
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(jsonlite)
-library(data.table)
-library(knitr)
-library(stringr)
-table_name <- character()
-table_description <- character()
-files <- list.files(path = '_temp_/crest/v1/meta_data/crest', full.names = TRUE)
-files <- files[!stringr::str_detect(files, 'database.json')]
-for(file in files){
-parsed_json <- fromJSON(file)
-table_name <- append(table_name, parsed_json$name)
-table_description <- append(table_description, parsed_json$description)
-}
-dt <- data.table('Table name' = table_name, 'Description' = table_description)
-kable(dt)
-```
-
 ## HOCAS{#hocas}
 
 This section of the guidance is currently under development.
@@ -107,97 +68,11 @@ Existing guidance on the HOCAS database is avaiable [here](https://github.com/mo
 
 For any queries, please contact [Karola Graupner](mailto:karola.graupner@digital.justice.gov.uk).
 
-### Tables
-
-```{bash clone hocas repo, include=FALSE}
-set -e
-
-[ -z "${GITHUB_TOKEN}" ] && exit 0
-
-git config --global user.name calumabarnett
-git config --global user.email calum.barnett@digital.justice.gov.uk
-
-if [ -d "_temp_" ]; then
-  if [ -d "_temp_/hocas" ]; then
-    cd _temp_/hocas
-    git pull origin master
-  else
-    cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-hocas-to-athena.git hocas
-  fi
-else
-  mkdir _temp_
-  cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-hocas-to-athena.git hocas
-fi
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(jsonlite)
-library(data.table)
-library(knitr)
-library(stringr)
-table_name <- character()
-table_description <- character()
-files <- list.files(path = '_temp_/hocas/meta_data/curated', full.names = TRUE)
-files <- files[!stringr::str_detect(files, 'database.json')]
-for(file in files){
-parsed_json <- fromJSON(file)
-table_name <- append(table_name, parsed_json$name)
-table_description <- append(table_description, parsed_json$description)
-}
-dt <- data.table('Table name' = table_name, 'Description' = table_description)
-kable(dt)
-```
-
 ## NOMIS{#nomis}
 
 This section of the guidance is currently under development.
 
 For any queries, please contact [Adam Booker](mailto:adam.booker@digital.justice.gov.uk).
-
-### Tables
-
-```{bash clone nomis repo, include=FALSE}
-set -e
-
-[ -z "${GITHUB_TOKEN}" ] && exit 0
-
-git config --global user.name calumabarnett
-git config --global user.email calum.barnett@digital.justice.gov.uk
-
-if [ -d "_temp_" ]; then
-  if [ -d "_temp_/nomis" ]; then
-    cd _temp_/nomis
-    git pull origin master
-  else
-    cd _temp_
-    git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
-  fi
-else
-  mkdir _temp_
-  cd _temp_
-  git clone https://${GITHUB_TOKEN}@github.com/moj-analytical-services/airflow-nomis-transform.git nomis
-fi
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(jsonlite)
-library(data.table)
-library(knitr)
-library(stringr)
-table_name <- character()
-table_description <- character()
-files <- list.files(path = '_temp_/nomis/meta_data/curated', full.names = TRUE)
-files <- files[!stringr::str_detect(files, 'database.json')]
-for(file in files){
-parsed_json <- fromJSON(file)
-table_name <- append(table_name, parsed_json$name)
-table_description <- append(table_description, parsed_json$description)
-}
-dt <- data.table('Table name' = table_name, 'Description' = table_description)
-kable(dt)
-```
 
 ## TAR{#tar}
 
