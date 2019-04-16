@@ -12,7 +12,7 @@ jobs:
           command: |
             apt-get update
             apt-get install -y git libssl-dev libcurl4-openssl-dev libxml2-dev pandoc
-            R -e "install.packages(c('remotes', 'data.table', 'jsonlite', 'knitr'), dependencies = TRUE)"
+            R -e "install.packages(c('remotes', 'data.table', 'jsonlite', 'knitr', 'httr'), dependencies = TRUE)"
             R -e "remotes::install_github('rstudio/bookdown')"
 
       - run:
